@@ -1,6 +1,6 @@
-# Project File Search
+# Source Code to Markdown
 
-This project provides a Python script that searches for files with specific extensions in a directory and its subdirectories, writing their contents to a markdown file. It includes options to ignore certain directories and files, include all file types, specify the file types to include, and minify the files.
+This project provides a Python script that searches for files with specific extensions in a directory and its subdirectories, writing their contents to a markdown file. It includes options to ignore certain directories and files, include all file types, specify the file types to include, and minify the files. It is extremely useful for documenting projects and using the markdown file as a reference for AI models.
 
 ## Features
 
@@ -15,14 +15,14 @@ This project provides a Python script that searches for files with specific exte
 To run the script, use the following command:
 
 ```bash
-python project_search.py [options]
+python source_merger.py [options]
 ```
 
 ### Options
 
 - `-i, --ignore <ignore>`: List of directories to ignore.
 - `-s, --start_dir <start_dir>`: The directory to start the search from (default: current directory).
-- `-x, --ignore_files <ignore_files>`: List of files to ignore (default: `project_search.py`).
+- `-x, --ignore_files <ignore_files>`: List of files to ignore (default: `source_merger.py`).
 - `-a, --all_types`: Include all file types.
 - `-e, --extensions <types>`: List of file types to include (default: `.html, .css, .js, .ejs, .py`).
 - `-n, --name <name>`: Name of the markdown file to write to (default: `project`).
@@ -31,10 +31,10 @@ python project_search.py [options]
 
 ### Example
 
-To search the `C:\Users\user\Documents\project` directory, ignore the `node_modules` directory, exclude `project_search.py` file, include `.html`, `.css`, `.js`, `.ejs`, and `.py` file types, and name the output markdown file `project`, use the following command:
+To search the `C:\Users\user\Documents\project` directory, ignore the `node_modules` directory, exclude `source_merger.py` file, include `.html`, `.css`, `.js`, `.ejs`, and `.py` file types, and name the output markdown file `project`, use the following command:
 
 ```bash
-python project_search.py -s "C:\Users\user\Documents\project" -i "node_modules" -x "project_search.py" -e ".html" ".css" ".js" ".ejs" ".py" -n "project"
+python source_merger.py -s "C:\Users\user\Documents\project" -i "node_modules" -x "source_merger.py" -e ".html" ".css" ".js" ".ejs" ".py" -n "project"
 ```
 
 ## Functions
@@ -68,7 +68,7 @@ Searches for files with specific extensions in a directory and its subdirectorie
 Ensure you have Python installed on your system. Install the required dependencies using pip:
 
 ```bash
-pip install jsmin csscompressor htmlmin rjsmin
+pip install -r requirements.txt
 ```
 
 ## Running the Script
