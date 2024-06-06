@@ -34,6 +34,19 @@ def get_file_type(file_path):
         "py": "python",
         "md": "markdown",
         "txt": "text",
+        "cpp": "cpp",
+        "c": "c",
+        "h": "c",
+        "hpp": "cpp",
+        "java": "java",
+        "cs": "csharp",
+        "vb": "vb",
+        "vbhtml": "vbhtml",
+        "ui": "xml",
+        "xml": "xml",
+        "json": "json",
+        "yml": "yaml",
+        "ui": "xml",
     }
     return file_types.get(file_type, None)
 
@@ -120,7 +133,7 @@ def search_files(start_dir, ignore_dirs, ignore_files, all_types, extensions, na
     """
     markdown_file = f"{name}.md"
     if all_types:
-        extensions = ['.html', '.css', '.js', '.ejs', '.py', '.txt', '.md', '.json', '.xml', '.yml', '.yaml', '.csv', '.ts', '.tsx', '.jsx', '.php', '.java', '.c', '.cpp', '.h', '.hpp', '.cs', '.vb', '.vbhtml']
+        extensions = ['.html', '.css', '.js', '.ejs', '.py', '.txt', '.md', '.json', '.xml', '.yml', '.yaml', '.csv', '.ts', '.tsx', '.jsx', '.php', '.java', '.c', '.cpp', '.h', '.hpp', '.cs', '.vb', '.vbhtml', '.ui']
 
     with open(markdown_file, "w", encoding='utf-8') as md_file:
         md_file.write(f"# {name}\n\n")
