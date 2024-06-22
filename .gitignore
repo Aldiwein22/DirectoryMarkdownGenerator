@@ -14,3 +14,4 @@ venv/
 
 # Visual Studio Code specific
 .vscode/
+.gitignore
