@@ -12,12 +12,19 @@ from jinja2 import Environment, FileSystemLoader
 import markdown
 import pdfkit
 import tempfile
-import shutil
 from git import Repo
 from git.exc import GitCommandError
 from typing import List, Optional
-import requests
 from urllib.parse import urlparse
+import sys
+
+if getattr(sys, 'frozen', False):
+    basedir = sys._MEIPASS
+else:
+    basedir = os.path.dirname(__file__)
+
+path_wkhtmltopdf = os.path.join(basedir, 'wkhtmltopdf.exe')
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -275,10 +282,10 @@ def findFiles(**kwargs):
                 md_content += f"## {os.path.relpath(file_path, start_dir)}\n\n"
                 md_content += f"```{getFileType(file_path)}\n{file_contents}\n```\n\n"
             html_content = markdown.markdown(md_content)
-
-            path_wkhtmltopdf = r'C:\Users\Aldiwein\Desktop\sourcecode_merger-master\.vscode\wkhtmltopdf\bin\wkhtmltopdf.exe'
-            config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-            pdfkit.from_string(html_content, output_file, configuration=config)
+            try:
+                pdfkit.from_string(html_content, output_file, configuration=config)
+            except Exception as e:
+                logger.error(f"Error converting HTML to PDF: {e}")
         elif output_format == 'txt':
             with open(output_file, "w", encoding='utf-8') as txt_file:
                 for file_path, file_contents in finalFiles.items():
